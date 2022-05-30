@@ -1,0 +1,41 @@
+name: Build & Publish Site
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Set up Ruby
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: 3.1
+
+    - name: Set up minifier
+      run: sudo apt-get install minify
+
+    - name: Checkout repo
+      uses: actions/checkout@v2
+
+    - name: Build site
+      uses: limjh16/jekyll-action-ts@v2
+      with:
+        enable_cache: true
+
+    - name: Minify built files
+      run: |
+        minify -r ./_site/ -o ./_site/
+        minify --type=json -o ./_site/site.webmanifest ./_site/site.webmanifest
+
+    - name: Publish site
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./_site
+        user_name: 'github-actions[bot]'
+        user_email: 'github-actions[bot]@users.noreply.github.com'
+        # cname: lucasjansen.me
