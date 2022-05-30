@@ -29,7 +29,7 @@ jobs:
     - name: Minify built files
       run: |
         minify -r ./_site/ -o ./_site/
-        minify --type=json -o ./_site/site.webmanifest ./_site/site.webmanifest
+      # minify --type=json -o ./_site/site.webmanifest ./_site/site.webmanifest
 
     - name: Publish site
       uses: peaceiris/actions-gh-pages@v3
