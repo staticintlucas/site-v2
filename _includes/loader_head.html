@@ -1,0 +1,35 @@
+{% assign loader-fade = 0.2 %}
+
+<style>
+  #loader {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #fff;
+    color: #e23661;
+    transition: opacity {{ loader-fade }}s linear;
+  }
+
+  #loader>svg {
+    max-height: 20%;
+    max-width: 20%;
+  }
+</style>
+<noscript>
+  <style>
+    #loader {
+      display: none;
+    }
+  </style>
+</noscript>
+<script>
+  window.addEventListener("load", () => {
+    let ldr = document.getElementById("loader").style;
+    ldr.opacity = 0;
+    setTimeout(() => {
+      ldr.display = "none";
+    }, {{ loader-fade | times: 1000 }});
+  });
+</script>

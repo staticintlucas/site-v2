@@ -1,0 +1,16 @@
+---
+# empty front matter so Jekyll knows to process this file
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>{{ page.title }}</title>
+    {% include loader_head.html %}
+  </head>
+  <body>
+    {% include loader.html %}
+    {{ content }}
+  </body>
+</html>
