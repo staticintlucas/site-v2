@@ -31,6 +31,16 @@ jobs:
         minify -r ./_site/ -o ./_site/
       # minify --type=json -o ./_site/site.webmanifest ./_site/site.webmanifest
 
+    - name: Take screenshot
+      uses: swinton/screenshot-website@v1.x
+      with:
+        source: ./_site/index.html
+        destination: ./_site/assets/img/homepage.png
+        width: 1280
+        height: 720
+        is-java-script-enabled: false
+        overwrite: true
+
     - name: Publish site
       uses: peaceiris/actions-gh-pages@v3
       with:
