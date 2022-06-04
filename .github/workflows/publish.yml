@@ -31,6 +31,9 @@ jobs:
         minify -r ./_site/ -o ./_site/
       # minify --type=json -o ./_site/site.webmanifest ./_site/site.webmanifest
 
+    - name: Make images directory
+      run: mkdir -p ./_site/assets/img/
+
     - name: Take screenshot
       uses: swinton/screenshot-website@v1.x
       with:
