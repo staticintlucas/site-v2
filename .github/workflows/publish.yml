@@ -40,7 +40,7 @@ jobs:
         width: 1280
         height: 720
         is-java-script-enabled: false
-        overwrite: true
+        scale-factor: 1
 
     - name: Move screenshot to output folder
       run: |
