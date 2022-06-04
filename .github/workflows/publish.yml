@@ -31,18 +31,21 @@ jobs:
         minify -r ./_site/ -o ./_site/
       # minify --type=json -o ./_site/site.webmanifest ./_site/site.webmanifest
 
-    - name: Make images directory
-      run: mkdir -p ./_site/assets/img/
-
     - name: Take screenshot
+      id: screenshot
       uses: swinton/screenshot-website@v1.x
       with:
         source: ./_site/index.html
-        destination: ./_site/assets/img/homepage.png
+        destination: screenshot.png
         width: 1280
         height: 720
         is-java-script-enabled: false
         overwrite: true
+
+    - name: Move screenshot to output folder
+      run: |
+        mkdir -p ./_site/assets/img/
+        mv ${{ steps.screenshot.outputs.path }} ./_site/assets/img/homepage.png
 
     - name: Publish site
       uses: peaceiris/actions-gh-pages@v3
