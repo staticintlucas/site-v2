@@ -1,27 +1,10 @@
-﻿<svg viewBox="-64 -64 128 128" xmlns="http://www.w3.org/2000/svg">
-    <path id="path" fill="none" d="m-16 32a16 16 0 1 1-16-16h64a16 16 0 1 1-16 16v-64a16 16 0 1 1 16 16h-64a16 16 0 1 1 16-16z"/>
-    <circle r="10" fill="currentColor">
-        <animateMotion dur="4s" repeatCount="indefinite"><mpath href="#path"/></animateMotion>
-    </circle>
-    <circle r="10" fill="currentColor">
-        <animateMotion begin="-0.5s" dur="4s" repeatCount="indefinite"><mpath href="#path"/></animateMotion>
-    </circle>
-    <circle r="10" fill="currentColor">
-        <animateMotion begin="-1s" dur="4s" repeatCount="indefinite"><mpath href="#path"/></animateMotion>
-    </circle>
-    <circle r="10" fill="currentColor">
-        <animateMotion begin="-1.5s" dur="4s" repeatCount="indefinite"><mpath href="#path"/></animateMotion>
-    </circle>
-    <circle r="10" fill="currentColor">
-        <animateMotion begin="-2s" dur="4s" repeatCount="indefinite"><mpath href="#path"/></animateMotion>
-    </circle>
-    <circle r="10" fill="currentColor">
-        <animateMotion begin="-2.5s" dur="4s" repeatCount="indefinite"><mpath href="#path"/></animateMotion>
-    </circle>
-    <circle r="10" fill="currentColor">
-        <animateMotion begin="-3s" dur="4s" repeatCount="indefinite"><mpath href="#path"/></animateMotion>
-    </circle>
-    <circle r="10" fill="currentColor">
-        <animateMotion begin="-3.5s" dur="4s" repeatCount="indefinite"><mpath href="#path"/></animateMotion>
-    </circle>
+﻿<svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" stroke-linejoin="round" stroke-linecap="round">
+    <rect x="11" y="1" rx="1" width="10" height="6.5" fill="currentColor"/>
+    <rect x="11" y="24.5" rx="1" width="10" height="6.5" fill="currentColor"/>
+    <rect x="24.5" y="14" rx="1" width="3.5" height="4" fill="currentColor"/>
+    <path d="M7 13c0-3.3 2.6-6 6-6h6c3.3 0 6 2.7 6 6v6c0 3.3-2.6 6-6 6h-6c-3.3 0-6-2.7-6-6z" fill="none" stroke="currentColor" stroke-width="2"/>
+    <path fill="none" stroke="currentColor" stroke-width="2">
+        <animate attributeName="d" dur="960ms" repeatCount="indefinite" calcMode="discrete"
+            values="M13 17h4v-6;M13 17h4l4-4;M13 17h4h4;M13 17h4l3 3;M13 17h4v4;M13 17h4l-4 4;M13 17h4h-6;M13 17h4l-4-4"/>
+    </path>
 </svg>
