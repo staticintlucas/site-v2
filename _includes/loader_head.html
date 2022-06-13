@@ -25,11 +25,12 @@
   </style>
 </noscript>
 <script>
+  "use strict";
   window.addEventListener("load", () => {
-    let ldr = document.getElementById("loader").style;
-    ldr.opacity = 0;
+    let ldr = document.getElementById("loader").style
+    ldr.opacity = 0
     setTimeout(() => {
-      ldr.display = "none";
-    }, {{ loader-fade | times: 1000 }});
+      ldr.display = "none"
+    }, {{ loader-fade | times: 1000 }})
   });
 </script>
