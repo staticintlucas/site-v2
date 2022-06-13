@@ -16,6 +16,8 @@ gem "jekyll", "~> 4.2.2"
 # If you have any plugins, put them here!
 group :jekyll_plugins do
   gem "jekyll-feed", "~> 0.12"
+  gem "jekyll-favicon-generator", "~> 0.1"
+  # TODO Use standard Gem when my PR is merged
   gem "jekyll-titles-from-headings", :git => "https://github.com/staticintlucas/jekyll-titles-from-headings.git", :branch => 'collection-type-fix'
 end
 
@@ -33,4 +35,5 @@ gem "wdm", "~> 0.1.1", :platforms => [:mingw, :x64_mingw, :mswin]
 # do not have a Java counterpart.
 gem "http_parser.rb", "~> 0.6.0", :platforms => [:jruby]
 
+# Workaround for Ruby 3.x support. TODO remove when we upgrade to Jekyll 4.3
 gem "webrick", "~> 1.7"
