@@ -18,6 +18,9 @@ jobs:
     - name: Set up minifier
       run: sudo apt-get install minify
 
+    - name: Set up libvips
+      run: sudo apt-get install libvips
+
     - name: Checkout repo
       uses: actions/checkout@v2
 
