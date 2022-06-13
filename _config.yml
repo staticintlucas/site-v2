@@ -22,8 +22,8 @@ title: Lucas Jansen
 # email: your-email@example.com # Nice try spam bots
 description: >- # this means to ignore newlines until "baseurl:"
   Hi. My name is Lucas and I am an electronic and software engineer from Cork, Ireland.
-baseurl: "" # the subpath of your site, e.g. /blog
-url: "https://lucasjansen.me/site-v2" # the base hostname & protocol for your site, e.g. http://example.com
+baseurl: "/site-v2" # the subpath of your site, e.g. /blog
+url: "https://lucasjansen.me" # the base hostname & protocol for your site, e.g. http://example.com
 # twitter_username: staticintlucas
 github_username: staticintlucas
 
