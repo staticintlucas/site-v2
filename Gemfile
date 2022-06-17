@@ -37,3 +37,6 @@ gem "http_parser.rb", "~> 0.6.0", :platforms => [:jruby]
 
 # Workaround for Ruby 3.x support. TODO remove when we upgrade to Jekyll 4.3
 gem "webrick", "~> 1.7"
+
+# Allows use of Dart Sass rather than the deprecated LibSass implementation
+gem 'sass-embedded', '~> 1.6'
