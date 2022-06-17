@@ -1,0 +1,12 @@
+@use "sass:color";
+
+$foreground: #d7425f;
+$background: #1e1e1e;
+
+@function light($color) {
+  @return lighten($color, 4%);
+}
+
+@function dark($color) {
+  @return darken($color, 4%);
+}
