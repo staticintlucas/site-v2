@@ -1,5 +1,5 @@
 ---
-# empty front matter so Jekyll knows to process this file
+stylesheets: ["main.css"]
 ---
 
 <!doctype html>
@@ -10,6 +10,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ page.title }}</title>
     {% favicons %}
+    {%- assign stylesheets = page.stylesheets | default: layout.stylesheets -%}
+    {%- for stylesheet in stylesheets %}
+      <link rel="stylesheet" href="{{ stylesheet | prepend: "assets/css/" | relative_url }}">
+    {%- endfor %}
     {% include loader_head.html %}
   </head>
   <body>
