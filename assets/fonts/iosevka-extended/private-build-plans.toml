@@ -11,7 +11,7 @@ webfont-formats = ['woff2']
 # Configure variants
 
 # Optional; Whether to inherit a `ss##` variant
-[buildPlans.iosevka-extended.variants]
+# [buildPlans.iosevka-extended.variants]
 # inherits = "ss01"
 
 # Optional; Configure single character's variant
@@ -35,12 +35,12 @@ percent = "rings-continuous-slash"
 lig-ltgteq = "flat"
 
 # Optional; Configure single character's variant for Upright and Oblique; Overrides [design]
-[buildPlans.iosevka-extended.variants.upright]
+# [buildPlans.iosevka-extended.variants.upright]
 # i = 'zshaped'
 # l = 'zshaped'
 
 # Optional; Configure single character's variant for Italic only; Overrides [design]
-[buildPlans.iosevka-extended.variants.italic]
+# [buildPlans.iosevka-extended.variants.italic]
 # i = 'tailed-serifed'
 # l = 'tailed-serifed'
 
@@ -50,7 +50,7 @@ lig-ltgteq = "flat"
 ###################################################################################################
 # Configure ligations
 
-[buildPlans.iosevka-extended.ligations]
+# [buildPlans.iosevka-extended.ligations]
 # inherits = "default-calt"   # Optional; inherits an existing ligation set
 # disables = []               # Optional; disable specific ligation groups, overrides inherited ligation set
 # enables  = []               # Optional; enable specific ligation groups, overrides inherited ligation set
@@ -133,8 +133,49 @@ css   = "normal"   # "font-stretch' property of webfont CSS.
 # Specify character ranges in the section below to exclude certain characters from the font being
 # built. Remove this section when this feature is not needed.
 
-# [buildPlans.iosevka-extended.exclude-chars]
-# ranges = [[10003, 10008]]
+[buildPlans.iosevka-extended.exclude-chars]
+ranges = [
+	# U+0000-024F
+	[0x0250, 0x0258],
+	# U+0259
+	[0x025A, 0x02BA],
+	# U+02BB-02BC
+	[0x02BD, 0x02C5],
+	# U+02C6
+	[0x02C7, 0x02D9],
+	# U+02DA
+	[0x02DB, 0x02DB],
+	# U+02DC
+	[0x02DD, 0x1DFF],
+	# U+1E00-1EFF
+	[0x1F00, 0x1FFF],
+	# U+2000-206F
+	[0x2070, 0x2073],
+	# U+2074
+	[0x2075, 0x209F],
+	# U+20A0-20CF
+	[0x20D0, 0x2112],
+	# U+2113
+	[0x2114, 0x2121],
+	# U+2122
+	[0x2123, 0x2190],
+	# U+2191
+	[0x2192, 0x2192],
+	# U+2193
+	[0x2194, 0x2211],
+	# U+2212
+	[0x2213, 0x2214],
+	# U+2215
+	[0x2216, 0x2C5F],
+	# U+2C60-2C7F
+	[0x2C80, 0xA71F],
+	# U+A720-A7FF
+	[0xA800, 0xFEFE],
+	# U+FEFF
+	[0xFF00, 0xFFFC],
+	# U+FFFD
+	[0xFFFE, 0x10FFFF],
+]
 
 # End character exclusion
 ###################################################################################################
