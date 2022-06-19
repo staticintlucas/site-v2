@@ -1,3 +1,6 @@
 <div id="loader">
-    {% include loading.svg %}
+  {% capture loader -%}
+  {% include loading.svg %}
+  {%- endcapture -%}
+  <img src="{{ "data:image/svg+xml," | append: loader | replace: '"', "'" | replace: "#", "%23" | strip_newlines }}">
 </div>
