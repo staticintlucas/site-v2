@@ -1,0 +1,28 @@
+@font-face {
+  font-family: "Iosevka Extended";
+  font-display: swap;
+  font-weight: 400;
+  font-style: normal;
+  src: url($font-dir + "iosevka-extended/iosevka-extended-regular.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Iosevka Extended";
+  font-display: swap;
+  font-weight: 400;
+  font-style: italic;
+  src: url($font-dir + "iosevka-extended/iosevka-extended-italic.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Iosevka Extended";
+  font-display: swap;
+  font-weight: 600;
+  font-style: normal;
+  src: url($font-dir + "iosevka-extended/iosevka-extended-bold.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Iosevka Extended";
+  font-display: swap;
+  font-weight: 600;
+  font-style: italic;
+  src: url($font-dir + "iosevka-extended/iosevka-extended-bolditalic.woff2") format("woff2");
+}

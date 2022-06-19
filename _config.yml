@@ -46,3 +46,5 @@ sass:
 exclude:
   - README.md
   - LICENSE
+  - assets/fonts/**/LICENSE*
+  - "**/private-build-plans.toml"
