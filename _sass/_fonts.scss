@@ -1,4 +1,33 @@
 @font-face {
+  font-family: "Crimson Pro";
+  font-display: swap;
+  font-weight: 400;
+  font-style: normal;
+  src: url($font-dir + "crimson-pro/crimson-pro-regular.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Crimson Pro";
+  font-display: swap;
+  font-weight: 400;
+  font-style: italic;
+  src: url($font-dir + "crimson-pro/crimson-pro-italic.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Crimson Pro";
+  font-display: swap;
+  font-weight: 600;
+  font-style: normal;
+  src: url($font-dir + "crimson-pro/crimson-pro-bold.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Crimson Pro";
+  font-display: swap;
+  font-weight: 600;
+  font-style: italic;
+  src: url($font-dir + "crimson-pro/crimson-pro-bolditalic.woff2") format("woff2");
+}
+
+@font-face {
   font-family: "Iosevka Extended";
   font-display: swap;
   font-weight: 400;
@@ -26,3 +55,6 @@
   font-style: italic;
   src: url($font-dir + "iosevka-extended/iosevka-extended-bolditalic.woff2") format("woff2");
 }
+
+$body-font-family: "Crimson Pro", Georgia, Cambria, "Times New Roman", serif;
+$mono-font-family: "Iosevka Extended", "Cascadia Mono", Menlo, Monaco, Consolas, monospace;
