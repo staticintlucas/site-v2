@@ -1,0 +1,13 @@
+:root {
+  font-size: 18pt;
+}
+
+body {
+  background-color: $background;
+  color: $foreground;
+  font-family: $body-font-family;
+}
+
+h1, h2, h3, h4, h5, h6, p {
+  max-width: 35rem;
+}

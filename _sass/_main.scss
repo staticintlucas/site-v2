@@ -2,8 +2,4 @@
 @import "_colors";
 @import "_fonts";
 
-body {
-    background-color: $background;
-    color: $foreground;
-    font-family: "Iosevka Extended", monospace;
-}
+@import "_common";
