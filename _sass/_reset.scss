@@ -1,0 +1,114 @@
+// CSS reset based on a mix of normalize.css and modern-normalize
+
+@use "sass:math";
+$line-height: math.div(17, 12); // =1.41666...
+
+*, ::before, ::after {
+  box-sizing: border-box; // To avoid having to do maths
+}
+
+html {
+  line-height: $line-height; // Default line-height
+  text-size-adjust: none; // Prevents font size adjustment on mobile
+  -webkit-text-size-adjust: none; // Prevents font size adjustment on mobile
+}
+
+body {
+  margin: 0; // Remove body margin
+}
+
+hr {
+  box-sizing: content-box; // Override setting to border-box
+  height: 0; // Set correct hr height
+}
+
+abbr[title] {
+  text-decoration: underline dotted; // Add the correct text decoration
+}
+
+b, strong {
+  font-weight: bolder; // Correct font weight
+}
+
+code, kbd, samp, pre {
+  font-size: 1em; // Correct the odd 'em' font sizing
+}
+
+small {
+  font-size: 80%; // Consistent small font size
+}
+
+sub, sup {
+  font-size: 75%; // Consistent sub and sup font size
+  line-height: 0; // Prevent sub and sup from affecting the line height
+  position: relative;
+  vertical-align: baseline;
+}
+
+sub {
+  bottom: -0.25em; // Align sub
+}
+
+sup {
+  top: -0.5em; // align sup
+}
+
+table {
+  text-indent: 0; // Remove text indentation from table contents
+  border-color: inherit; // Correct table border color inheritance
+}
+
+button, input, optgroup, select, textarea {
+  font-family: inherit; // Inherit font-family
+  font-size: 100%; // Inherit font-size
+  line-height: $line-height; // Inherit line-height
+  margin: 0; // Remove margin
+}
+
+button, select {
+  text-transform: none; // Remove the inheritance of text transform
+}
+
+button, [type="button"], [type="reset"], [type="submit"] {
+  -webkit-appearance: button; // Correct the inability to style clickable types in Safari
+}
+
+::-moz-focus-inner {
+  border-style: none; // Remove the inner border in Firefox
+  padding: 0; // Remove the inner padding in Firefox
+}
+
+:-moz-focusring {
+  outline: 1px dotted ButtonText; // Restore the focus styles unset by the previous rule
+}
+
+legend {
+  padding: 0; // Remove padding
+}
+
+progress {
+  vertical-align: baseline; // Add the correct vertical alignment
+}
+
+::-webkit-inner-spin-button,
+::-webkit-outer-spin-button {
+  height: auto; // Correct the cursor style of increment and decrement buttons in Safari
+}
+
+[type="search"] {
+  -webkit-appearance: textfield; // Correct the odd appearance in Chrome and Safari
+  outline-offset: -2px; // Correct the outline style in Safari
+}
+
+::-webkit-search-decoration {
+  -webkit-appearance: none; // Remove the inner padding in Chrome and Safari on macOS
+}
+
+::-webkit-file-upload-button {
+  -webkit-appearance: button; // Correct the inability to style clickable types in Safari
+  font: inherit; // Inherit font in Safari
+}
+
+summary {
+  display: list-item; // Add the correct display
+}
