@@ -1,0 +1,46 @@
+$nav-height: 5rem;
+$nav-width: 60rem;
+$nav-margin: 2rem;
+
+body {
+  margin-top: $nav-height;
+}
+
+header#main-nav-header {
+  position: fixed;
+  inset: 0;
+  height: $nav-height;
+
+  font-family: $mono-font-family;
+  font-size: 0.8rem;
+  font-weight: bold;
+  text-transform: uppercase;
+
+  >nav {
+    height: 100%;
+    width: $nav-width;
+    max-width: 100%;
+    margin: auto;
+    padding: 0 $nav-margin;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    svg.logo {
+      display: block;
+      width: 2rem;
+      height: 2rem;
+    }
+
+    ul {
+      list-style: none;
+      display: flex;
+      flex-direction: row;
+    }
+
+    a {
+      padding: 0.5rem 1.5rem;
+      text-decoration: none;
+    }
+  }
+}

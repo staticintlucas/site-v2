@@ -1,4 +1,13 @@
 GIT
+  remote: https://github.com/sdumetz/jekyll-inline-svg
+  revision: 2ae146555b4d2a8f44c963cead12cfddb965a39e
+  ref: 2ae1465
+  specs:
+    jekyll-inline-svg (1.1.4)
+      jekyll (>= 3.3, < 5.0)
+      svg_optimizer (~> 0.2.5)
+
+GIT
   remote: https://github.com/staticintlucas/jekyll-titles-from-headings.git
   revision: df3d78a1d91f69f5bef8529104c58a42b23722d8
   branch: collection-type-fix
@@ -95,6 +104,7 @@ DEPENDENCIES
   jekyll (~> 4.2.2)
   jekyll-favicon-generator (~> 0.1)
   jekyll-feed (~> 0.12)
+  jekyll-inline-svg!
   jekyll-titles-from-headings!
   sass-embedded (~> 1.6)
   tzinfo (~> 1.2)

@@ -19,6 +19,7 @@ group :jekyll_plugins do
   gem "jekyll-favicon-generator", "~> 0.1"
   # TODO Use standard Gem when my PR is merged
   gem "jekyll-titles-from-headings", :git => "https://github.com/staticintlucas/jekyll-titles-from-headings.git", :branch => 'collection-type-fix'
+  gem "jekyll-inline-svg", :git => "https://github.com/sdumetz/jekyll-inline-svg", :ref => "2ae1465"
 end
 
 # Windows and JRuby does not include zoneinfo files, so bundle the tzinfo-data gem
