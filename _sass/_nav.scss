@@ -1,7 +1,3 @@
-$nav-height: 5rem;
-$nav-width: 60rem;
-$nav-margin: 2rem;
-
 body {
   margin-top: $nav-height;
 }
@@ -28,8 +24,8 @@ header#main-nav-header {
 
     svg.logo {
       display: block;
-      width: 2rem;
-      height: 2rem;
+      width: $nav-logo-size;
+      height: $nav-logo-size;
     }
 
     ul {
@@ -39,8 +35,20 @@ header#main-nav-header {
     }
 
     a {
-      padding: 0.5rem 1.5rem;
+      margin: $nav-link-margin;
+      padding: $nav-link-padding;
       text-decoration: none;
+      text-decoration: none solid $a-uline-thickness;
+      text-underline-offset: $a-uline-offset;
+
+      &:not(.logo-link) {
+        color: $foreground;
+      }
+
+      &:hover, &:active {
+        color: light($accent);
+        text-decoration-line: underline;
+      }
     }
   }
 }

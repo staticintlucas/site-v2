@@ -1,6 +1,7 @@
 @use "sass:color";
 
-$foreground: #d7425f;
+$accent: #d7425f;
+$foreground: #c9c8c7;
 $background: #1e1e1e;
 
 @function light($color) {

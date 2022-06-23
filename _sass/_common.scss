@@ -1,5 +1,5 @@
 :root {
-  font-size: 18pt;
+  font-size: $root-font-size;
 }
 
 body {
@@ -9,13 +9,18 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6, p {
-  max-width: 35rem;
+  max-width: $main-width;
 }
 
 a {
-  color: $foreground;
+  color: $accent;
+  transition: color $a-transition-duration linear;
 
   &:visited {
-    color: $foreground;
+    color: $accent;
+  }
+
+  &:hover, &:active {
+    color: light($accent);
   }
 }
