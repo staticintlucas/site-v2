@@ -1,12 +1,12 @@
 #!/bin/bash
 
-set -euo pipefail
+set -euxo pipefail
 
 build_dir="build"
 
 iosevka_ver="v15.5.1"
 inter_ver="v3.19"
-crimson_ver="fonts-october2014"
+crimson_ver="f21e0a4"
 
 iosevka_build_dir="$build_dir/iosevka-$iosevka_ver"
 inter_build_dir="$build_dir/inter-$inter_ver"
@@ -39,7 +39,22 @@ build_iosevka() {
   ( cd $dir && ( npm run build -- webfont::iosevka-extended; echo ) )
   mkdir -p "$iosevka_install_dir"
   cp "$dir"/dist/iosevka-extended/woff2/iosevka-extended-*.woff2 "$iosevka_install_dir"
-  cp "$dir/LICENSE.md" "$iosevka_install_dir"
+  cp "$dir/LICENSE.md" "$iosevka_install_dir/LICENSE.md"
+}
+
+build_crimson() {
+  local dir="$1"
+  (
+    cd $dir
+    grep -q protobuf requirements.txt || echo "protobuf==3.19.4" >> requirements.txt
+    make build
+  )
+  mkdir -p "$crimson_install_dir"
+  cp "$dir"/fonts/webfonts/CrimsonPro-Light.woff2 "$crimson_install_dir/crimson-pro-regular.woff2"
+  cp "$dir"/fonts/webfonts/CrimsonPro-LightItalic.woff2 "$crimson_install_dir/crimson-pro-italic.woff2"
+  cp "$dir"/fonts/webfonts/CrimsonPro-Medium.woff2 "$crimson_install_dir/crimson-pro-bold.woff2"
+  cp "$dir"/fonts/webfonts/CrimsonPro-MediumItalic.woff2 "$crimson_install_dir/crimson-pro-bolditalic.woff2"
+  cp "$dir/OFL.txt" "$crimson_install_dir/LICENSE.txt"
 }
 
 cd -- "$(dirname -- "${BASH_SOURCE[0]}")"
@@ -51,6 +66,8 @@ echo '*' > "$build_dir/.gitignore"
 [ "$(major_version $(node --version))" -gt "14" ] || \
   { echo "NodeJS 14.0 or later is required for Iosevka"; exit 1; }
 command -v ttfautohint > /dev/null || { echo "ttfautohint is required for Iosevka"; exit 1; }
+command -v python3 > /dev/null || { echo "python3 is required for Crimson Pro"; exit 1; }
+command -v yq > /dev/null || { echo "yq is required for Crimson Pro"; exit 1; }
 
 # Download fonts
 
@@ -61,8 +78,16 @@ echo "Downloading Inter..."
 download "https://github.com/rsms/inter/archive/refs/tags/$inter_ver.tar.gz" "$inter_build_dir"
 
 echo "Downloading Crimson Pro..."
-download "https://github.com/Fonthausen/CrimsonPro/archive/refs/tags/$crimson_ver.tar.gz" "$crimson_build_dir"
+# download "https://github.com/Fonthausen/CrimsonPro/archive/refs/tags/$crimson_ver.tar.gz" "$crimson_build_dir"
+download "https://github.com/Fonthausen/CrimsonPro/tarball/$crimson_ver" "$crimson_build_dir"
 
-# Build Iosevka
+# Build fonts
+
 echo "Building Iosevka..."
 build_iosevka "$iosevka_build_dir"
+
+# echo "Building Inter..."
+# build_inter "$inter_build_dir"
+
+echo "Building Crimson Pro..."
+build_crimson "$crimson_build_dir"
