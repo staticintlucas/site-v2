@@ -68,12 +68,12 @@ lig-ltgteq = "flat"
 #             If you decide to use custom weights you have to define all the weights you
 #             plan to use otherwise they will not be built.
 [buildPlans.iosevka-extended.weights.regular]
-shape = 300  # Weight for glyph shapes.
+shape = 350  # Weight for glyph shapes.
 menu  = 400  # Weight for the font's names.
 css   = 400  # Weight for webfont CSS.
 
 [buildPlans.iosevka-extended.weights.bold]
-shape = 500
+shape = 550
 menu  = 600
 css   = 600
 
