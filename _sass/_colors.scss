@@ -3,6 +3,7 @@
 $accent: #d7425f;
 $foreground: #c9c8c7;
 $background: #1e1e1e;
+$greyed: #818080;
 
 @function light($color) {
   @return lighten($color, 4%);

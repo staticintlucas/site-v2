@@ -28,6 +28,21 @@
 }
 
 @font-face {
+  font-family: "Inter Display";
+  font-display: swap;
+  font-weight: 700;
+  font-style: normal;
+  src: url($font-dir + "inter-display/inter-display-bold.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Inter Display";
+  font-display: swap;
+  font-weight: 700;
+  font-style: italic;
+  src: url($font-dir + "inter-display/inter-display-bolditalic.woff2") format("woff2");
+}
+
+@font-face {
   font-family: "Iosevka Extended";
   font-display: swap;
   font-weight: 400;
@@ -57,4 +72,6 @@
 }
 
 $body-font-family: "Crimson Pro", Georgia, Cambria, "Times New Roman", serif;
+$header-font-family: "Inter Display", Helvetica, Arial, sans;
 $mono-font-family: "Iosevka Extended", "Cascadia Mono", Menlo, Monaco, Consolas, monospace;
+$mono-font-size: 0.8rem;

@@ -8,8 +8,14 @@ body {
   font-family: $body-font-family;
 }
 
-h1, h2, h3, h4, h5, h6, p {
+main {
+  margin: auto;
   max-width: $main-width;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: $header-font-family;
+  font-weight: bold;
 }
 
 a {
@@ -23,4 +29,9 @@ a {
   &:hover, &:active {
     color: light($accent);
   }
+}
+
+code {
+  font-family: $mono-font-family;
+  font-size: $mono-font-size;
 }
