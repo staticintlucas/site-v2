@@ -42,12 +42,26 @@ build_iosevka() {
   cp "$dir/LICENSE.md" "$iosevka_install_dir/LICENSE.md"
 }
 
+build_inter() {
+  local dir="$1"
+  (
+    cd $dir
+    grep -q protobuf requirements.txt || echo "protobuf==3.19.4" >> requirements.txt
+    ./init.sh
+    make web -j
+  )
+  mkdir -p "$inter_install_dir"
+  cp "$dir"/build/fonts/const-hinted/InterDisplay-Bold.woff2 "$inter_install_dir/inter-display-bold.woff2"
+  cp "$dir"/build/fonts/const-hinted/InterDisplay-BoldItalic.woff2 "$inter_install_dir/inter-display-bolditalic.woff2"
+  cp "$dir/LICENSE.txt" "$inter_install_dir/LICENSE.txt"
+}
+
 build_crimson() {
   local dir="$1"
   (
     cd $dir
     grep -q protobuf requirements.txt || echo "protobuf==3.19.4" >> requirements.txt
-    make build
+    make build -j
   )
   mkdir -p "$crimson_install_dir"
   cp "$dir"/fonts/webfonts/CrimsonPro-Light.woff2 "$crimson_install_dir/crimson-pro-regular.woff2"
@@ -66,7 +80,7 @@ echo '*' > "$build_dir/.gitignore"
 [ "$(major_version $(node --version))" -gt "14" ] || \
   { echo "NodeJS 14.0 or later is required for Iosevka"; exit 1; }
 command -v ttfautohint > /dev/null || { echo "ttfautohint is required for Iosevka"; exit 1; }
-command -v python3 > /dev/null || { echo "python3 is required for Crimson Pro"; exit 1; }
+command -v python3 > /dev/null || { echo "python3 is required for Crimson Pro and Inter"; exit 1; }
 command -v yq > /dev/null || { echo "yq is required for Crimson Pro"; exit 1; }
 
 # Download fonts
@@ -83,11 +97,11 @@ download "https://github.com/Fonthausen/CrimsonPro/tarball/$crimson_ver" "$crims
 
 # Build fonts
 
-echo "Building Iosevka..."
-build_iosevka "$iosevka_build_dir"
+# echo "Building Iosevka..."
+# build_iosevka "$iosevka_build_dir"
 
-# echo "Building Inter..."
-# build_inter "$inter_build_dir"
+echo "Building Inter..."
+build_inter "$inter_build_dir"
 
-echo "Building Crimson Pro..."
-build_crimson "$crimson_build_dir"
+# echo "Building Crimson Pro..."
+# build_crimson "$crimson_build_dir"
