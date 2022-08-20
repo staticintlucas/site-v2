@@ -16,23 +16,11 @@ webfont-formats = ['woff2']
 
 # Optional; Configure single character's variant
 [buildPlans.iosevka-extended.variants.design]
-capital-g = "toothless-rounded-serifless-hooked"
-capital-j = "serifless"
-capital-q = "straight"
-q = "tailed"
-long-s = "flat-hook-tailed"
-eszet = "sulzbacher-descending"
-lower-mu = "tailless"
-lower-xi = "rounded"
-seven = "straight-crossbar"
 asterisk = "turn-hex-high"
-paren = "flat-arc"
-brace = "straight"
 at = "fourfold"
 dollar = "open"
 cent = "open"
 percent = "rings-continuous-slash"
-lig-ltgteq = "flat"
 
 # Optional; Configure single character's variant for Upright and Oblique; Overrides [design]
 # [buildPlans.iosevka-extended.variants.upright]
