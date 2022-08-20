@@ -46,4 +46,5 @@ sass:
 exclude:
   - README.md
   - LICENSE
+  - vendor
   - assets/fonts/*build*
