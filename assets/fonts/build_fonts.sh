@@ -5,7 +5,7 @@ set -euxo pipefail
 build_dir="build"
 
 iosevka_ver="v15.6.3"
-inter_ver="cce4f42"
+inter_ver="v3.19"
 crimson_ver="f21e0a4"
 
 iosevka_build_dir="$build_dir/iosevka-$iosevka_ver"
@@ -46,10 +46,11 @@ build_inter() {
   local dir="$1"
   (
     cd $dir
-    grep -q protobuf requirements.txt || echo "protobuf==3.19.4" >> requirements.txt
-    chmod +x init.sh
+    # Update version so build doesn't fail without Python2
+    sed -i 's/skia-pathops==0\.6\.0\.post2/skia-pathops==0.7.*/' requirements.txt
+    sed -i 's/cu2qu==1\.6\.7$/cu2qu==1.6.7.post1/' requirements.txt
     ./init.sh
-    make web -j
+    make all_web_hinted_display -j
   )
   mkdir -p "$inter_install_dir"
   cp "$dir"/build/fonts/const-hinted/InterDisplay-Bold.woff2 "$inter_install_dir/inter-display-bold.woff2"
@@ -61,7 +62,6 @@ build_crimson() {
   local dir="$1"
   (
     cd $dir
-    grep -q protobuf requirements.txt || echo "protobuf==3.19.4" >> requirements.txt
     make build -j
   )
   mkdir -p "$crimson_install_dir"
@@ -90,8 +90,7 @@ echo "Downloading Iosevka..."
 download "https://github.com/be5invis/Iosevka/archive/refs/tags/$iosevka_ver.tar.gz" "$iosevka_build_dir"
 
 echo "Downloading Inter..."
-# download "https://github.com/rsms/inter/archive/refs/tags/$inter_ver.tar.gz" "$inter_build_dir"
-download "https://github.com/rsms/inter/tarball/$inter_ver" "$inter_build_dir"
+download "https://github.com/rsms/inter/archive/refs/tags/$inter_ver.tar.gz" "$inter_build_dir"
 
 echo "Downloading Crimson Pro..."
 # download "https://github.com/Fonthausen/CrimsonPro/archive/refs/tags/$crimson_ver.tar.gz" "$crimson_build_dir"
