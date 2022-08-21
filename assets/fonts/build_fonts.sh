@@ -4,8 +4,8 @@ set -euxo pipefail
 
 build_dir="build"
 
-iosevka_ver="v15.5.1"
-inter_ver="v3.19"
+iosevka_ver="v15.6.3"
+inter_ver="cce4f42"
 crimson_ver="f21e0a4"
 
 iosevka_build_dir="$build_dir/iosevka-$iosevka_ver"
@@ -47,6 +47,7 @@ build_inter() {
   (
     cd $dir
     grep -q protobuf requirements.txt || echo "protobuf==3.19.4" >> requirements.txt
+    chmod +x init.sh
     ./init.sh
     make web -j
   )
@@ -89,7 +90,8 @@ echo "Downloading Iosevka..."
 download "https://github.com/be5invis/Iosevka/archive/refs/tags/$iosevka_ver.tar.gz" "$iosevka_build_dir"
 
 echo "Downloading Inter..."
-download "https://github.com/rsms/inter/archive/refs/tags/$inter_ver.tar.gz" "$inter_build_dir"
+# download "https://github.com/rsms/inter/archive/refs/tags/$inter_ver.tar.gz" "$inter_build_dir"
+download "https://github.com/rsms/inter/tarball/$inter_ver" "$inter_build_dir"
 
 echo "Downloading Crimson Pro..."
 # download "https://github.com/Fonthausen/CrimsonPro/archive/refs/tags/$crimson_ver.tar.gz" "$crimson_build_dir"
@@ -97,11 +99,11 @@ download "https://github.com/Fonthausen/CrimsonPro/tarball/$crimson_ver" "$crims
 
 # Build fonts
 
-# echo "Building Iosevka..."
-# build_iosevka "$iosevka_build_dir"
+echo "Building Iosevka..."
+build_iosevka "$iosevka_build_dir"
 
 echo "Building Inter..."
 build_inter "$inter_build_dir"
 
-# echo "Building Crimson Pro..."
-# build_crimson "$crimson_build_dir"
+echo "Building Crimson Pro..."
+build_crimson "$crimson_build_dir"
