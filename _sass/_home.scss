@@ -2,6 +2,11 @@
 @import "_fonts";
 @import "_sizes";
 
+main.home {
+  max-width: unset;
+  width: fit-content;
+}
+
 div.full-height {
   width: 100%;
   height: calc(100vh - $nav-height);
@@ -10,17 +15,19 @@ div.full-height {
   justify-content: center;
   gap: 0.5rem;
 
-  >* {
+  >h1 {
+    font-size: 7rem;
+    line-height: 0.8;
+    margin: 0 -0.2rem;
+    width: fit-content;
+  }
+
+  >:not(h1) {
     margin: 0;
+    width: $narrow-width;
   }
 
   >code {
     color: $greyed;
-  }
-
-  >h1 {
-    font-size: 5.5rem;
-    line-height: 1;
-    margin: 0 -0.1rem;
   }
 }
