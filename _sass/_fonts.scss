@@ -30,6 +30,20 @@
 @font-face {
   font-family: "Inter Display";
   font-display: swap;
+  font-weight: 400;
+  font-style: normal;
+  src: url($font-dir + "inter-display/inter-display-regular.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Inter Display";
+  font-display: swap;
+  font-weight: 400;
+  font-style: italic;
+  src: url($font-dir + "inter-display/inter-display-italic.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Inter Display";
+  font-display: swap;
   font-weight: 700;
   font-style: normal;
   src: url($font-dir + "inter-display/inter-display-bold.woff2") format("woff2");

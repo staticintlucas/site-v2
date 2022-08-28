@@ -53,6 +53,8 @@ build_inter() {
     make all_web_hinted_display -j
   )
   mkdir -p "$inter_install_dir"
+  cp "$dir"/build/fonts/const-hinted/InterDisplay-Regular.woff2 "$inter_install_dir/inter-display-regular.woff2"
+  cp "$dir"/build/fonts/const-hinted/InterDisplay-Italic.woff2 "$inter_install_dir/inter-display-italic.woff2"
   cp "$dir"/build/fonts/const-hinted/InterDisplay-Bold.woff2 "$inter_install_dir/inter-display-bold.woff2"
   cp "$dir"/build/fonts/const-hinted/InterDisplay-BoldItalic.woff2 "$inter_install_dir/inter-display-bolditalic.woff2"
   cp "$dir/LICENSE.txt" "$inter_install_dir/LICENSE.txt"
