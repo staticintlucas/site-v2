@@ -30,7 +30,6 @@ github_username: staticintlucas
 # Build settings
 theme: null
 sass:
-  implementation: sass-embedded
   sourcemap: development
 # plugins:
 #   - jekyll-feed
