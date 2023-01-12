@@ -36,8 +36,8 @@ header#main-nav-header {
     a {
       margin: $nav-link-margin;
       padding: $nav-link-padding;
-      text-decoration: none;
-      text-decoration: none solid $a-uline-thickness;
+      text-decoration: solid underline transparent;
+      text-decoration-thickness: $a-uline-thickness;
       text-underline-offset: $a-uline-offset;
 
       &:not(.logo-link) {
@@ -46,7 +46,7 @@ header#main-nav-header {
 
       &:hover, &:active {
         color: light($accent);
-        text-decoration-line: underline;
+        text-decoration-color: light($accent);
       }
     }
   }
