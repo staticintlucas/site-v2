@@ -36,9 +36,10 @@ jobs:
         JEKYLL_ENV: production
 
     - name: Minify built files
+      working-directory: ./_site
       run: |
-        minify -r ./_site/ -o ./_site/
-      # minify --type=json -o ./_site/site.webmanifest ./_site/site.webmanifest
+        minify -r . -o .
+        minify --type=json site.webmanifest -o .
 
     - name: Take screenshot
       id: screenshot
