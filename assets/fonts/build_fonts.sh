@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -euxo pipefail
+set -euo pipefail
 
 build_dir="build"
 
@@ -15,6 +15,10 @@ crimson_build_dir="$build_dir/crimson-$crimson_ver"
 iosevka_install_dir="iosevka-extended"
 inter_install_dir="inter-display"
 crimson_install_dir="crimson-pro"
+
+venv_dir="$build_dir/.venv"
+subset_requirements="subset-requirements.txt"
+subset_range="0-24F,259,2BB-2BC,2C6,2DA,2DC,1E00-1EFF,2000-206F,2074,20A0-20CF,2113,2122,2191,2193,2212,2215,2C60-2C7F,A720-A7FF,FEFF,FFFD"
 
 download() {
   local url="$1"
@@ -74,6 +78,23 @@ build_crimson() {
   cp "$dir/OFL.txt" "$crimson_install_dir/LICENSE.txt"
 }
 
+create_subset_venv () {
+  local dir="$1"
+  test -f "$dir/bin/activate" || python3 -m virtualenv "$dir"
+  source "$dir/bin/activate"
+  trap deactivate EXIT
+  python3 -m pip install -r "$subset_requirements"
+}
+
+subset() {
+  local dir="$1"
+  for f in "$dir"/*.woff2; do
+    pyftsubset "$f" --unicodes="$subset_range" --flavor=woff2
+    rm "$f"
+    mv "${f%.woff2}.subset.woff2" "$f"
+  done
+}
+
 cd -- "$(dirname -- "${BASH_SOURCE[0]}")"
 mkdir -p "$build_dir"
 echo '*' > "$build_dir/.gitignore"
@@ -108,3 +129,17 @@ build_inter "$inter_build_dir"
 
 echo "Building Crimson Pro..."
 build_crimson "$crimson_build_dir"
+
+# Compress fonts
+
+echo "Downloading pyftsubset..."
+create_subset_venv "$venv_dir"
+
+echo "Minimising Iosevka..."
+subset "$iosevka_install_dir"
+
+echo "Minimising Inter..."
+subset "$inter_install_dir"
+
+echo "Minimising Crimson Pro..."
+subset "$crimson_install_dir"
