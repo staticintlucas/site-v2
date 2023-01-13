@@ -8,16 +8,15 @@ stylesheets: ["main.css"]
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ page.title }}</title>
+    <title>{{ page.title | default: site.title }}</title>
     {% favicons %}
     {%- assign stylesheets = page.stylesheets | default: layout.stylesheets -%}
     {%- for stylesheet in stylesheets %}
-      <link rel="stylesheet" href="{{ stylesheet | prepend: "assets/css/" | relative_url }}">
+      <link rel="stylesheet" href="{{ stylesheet | prepend: 'assets/css/' | relative_url }}">
     {%- endfor %}
     {% include loader_head.html %}
   </head>
   <body>
-    {% include loader.html %}
     {% include nav.html %}
     {{ content }}
   </body>
