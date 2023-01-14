@@ -21,6 +21,8 @@ h1, h2, h3, h4, h5, h6 {
 a {
   color: $accent;
   transition: color $a-transition-duration linear;
+  text-decoration: solid underline $accent-underline;
+  text-decoration-thickness: $a-underline-thickness;
 
   &:visited {
     color: $accent;
@@ -28,6 +30,7 @@ a {
 
   &:hover, &:active {
     color: light($accent);
+    text-decoration-color: light($accent-underline);
   }
 }
 

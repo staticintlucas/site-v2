@@ -1,17 +1,20 @@
 $root-font-size: 18pt;
 
-$a-uline-offset: 0.09em;
-$a-uline-thickness: 0.06em;
-$a-transition-duration: 0.15s;
+$a-underline-thickness: 0.075em;
+$a-transition-duration: 0.125s;
 
 $main-width: 35rem;
 
-$nav-height: 5rem;
-$nav-width: 60rem;
-$nav-margin: 2rem;
-$nav-logo-size: 2rem;
-$nav-link-padding: 0.25rem 0.5rem;
-$nav-link-margin: 0.25rem 1rem;
+$nav-height: 6em;
+$nav-width: 72em;
+$nav-margin: 2.4em;
+$nav-logo-size: 2.4em;
+$nav-link-margin-v: 0.3em;
+$nav-link-margin-h: 1.2em;
+$nav-link-margin: $nav-link-margin-v $nav-link-margin-h;
+$nav-link-padding-v: 0.3em;
+$nav-link-padding-h: 0.6em;
+$nav-link-padding: $nav-link-padding-v $nav-link-padding-h;
 
 $wide-width: 45rem;
 $narrow-width: 25rem;
