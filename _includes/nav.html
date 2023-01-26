@@ -13,3 +13,13 @@
     </ul>
   </nav>
 </header>
+<script>
+  "use strict";
+  window.addEventListener("load", () => {
+    let nav = document.getElementById("main-nav-header")
+    window.addEventListener("scroll", (e) => {
+      nav.style.boxShadow = (this.scrollY) ? "" : "none";
+    })
+    window.dispatchEvent(new Event("scroll"))
+  })
+</script>

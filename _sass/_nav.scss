@@ -7,9 +7,10 @@ header#main-nav-header {
   inset: 0;
   height: $nav-height;
 
+  box-shadow: 0 0px 1pt black;
+
   font-family: $mono-font-family;
   font-size: $mono-font-size;
-  // text-transform: uppercase;
 
   >nav {
     height: 100%;
@@ -31,6 +32,7 @@ header#main-nav-header {
       list-style: none;
       display: flex;
       flex-direction: row;
+      margin: 0;
     }
 
     a {

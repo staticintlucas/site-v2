@@ -13,9 +13,45 @@ main {
   max-width: $main-width;
 }
 
+p, form, h1, h2, h3, h4, h5, h6, hgroup, ul, ol, table, blockquote, hr, span, footer {
+  margin: $p-margin 0;
+}
+
+div.vcenter {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
 h1, h2, h3, h4, h5, h6 {
   font-family: $header-font-family;
-  font-weight: bold;
+  font-weight: normal;
+  line-height: 1;
+}
+
+h1 {
+  font-size: $h1-font-size;
+}
+
+h2 {
+  font-size: $h2-font-size;
+}
+
+h3 {
+  font-size: $h3-font-size;
+}
+
+h4 {
+  font-size: $h4-font-size;
+}
+
+h5 {
+  font-size: $h5-font-size;
+}
+
+h6 {
+  font-size: $h6-font-size;
 }
 
 a {
@@ -37,4 +73,10 @@ a {
 code {
   font-family: $mono-font-family;
   font-size: $mono-font-size;
+}
+
+footer {
+  font-size: $footer-font-size;
+  color: $greyed;
+  text-align: center;
 }
