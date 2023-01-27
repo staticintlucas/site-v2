@@ -51,6 +51,7 @@ jobs:
         height: 720
         is-java-script-enabled: false
         scale-factor: 1
+        styles: ./_site/assets/css/home.css,./_site/assets/css/main.css
 
     - name: Move screenshot to output folder
       run: |
