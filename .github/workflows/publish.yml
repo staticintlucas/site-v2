@@ -41,17 +41,26 @@ jobs:
         minify -r . -o .
         minify --type=json site.webmanifest -o .
 
+    - name: Edit homepage for screenshot
+      run: |
+        cp _site/index.html _site/screenshot-index.html
+        sed -i -e 's~${{ steps.pages.outputs.base_url }}/~~g' _site/screenshot-index.html
+        sed -i -e 's~${{ steps.pages.outputs.base_path }}/~~g' _site/screenshot-index.html
+
     - name: Take screenshot
       id: screenshot
       uses: swinton/screenshot-website@v1.x
       with:
-        source: ./_site/index.html
+        source: ./_site/screenshot-index.html
         destination: screenshot.png
         width: 1280
         height: 720
         is-java-script-enabled: false
         scale-factor: 1
-        styles: ./_site/assets/css/home.css,./_site/assets/css/main.css
+
+    - name: Clean up homepage for screenshot
+      run: |
+        rm _site/screenshot-index.html
 
     - name: Move screenshot to output folder
       run: |
