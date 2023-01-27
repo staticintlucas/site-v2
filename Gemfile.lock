@@ -59,6 +59,8 @@ GEM
       jekyll (>= 3.7, < 5.0)
     jekyll-sass-converter (3.0.0)
       sass-embedded (~> 1.54)
+    jekyll-seo-tag (2.8.0)
+      jekyll (>= 3.8, < 5.0)
     jekyll-watch (2.2.1)
       listen (~> 3.0)
     kramdown (2.4.0)
@@ -104,6 +106,7 @@ DEPENDENCIES
   jekyll-favicon-generator (~> 0.1)
   jekyll-feed (~> 0.17)
   jekyll-inline-svg!
+  jekyll-seo-tag (~> 2.8)
   jekyll-titles-from-headings!
   tzinfo (>= 1, < 3)
   tzinfo-data

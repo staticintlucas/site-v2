@@ -54,8 +54,8 @@ jobs:
 
     - name: Move screenshot to output folder
       run: |
-        mkdir -p ./_site/assets/img/
-        mv ${{ steps.screenshot.outputs.path }} ./_site/assets/img/homepage.png
+        mkdir -p ./_site/assets/images/
+        mv ${{ steps.screenshot.outputs.path }} ./_site/assets/images/homepage.png
 
     - name: Upload artifact
       # Automatically uploads an artifact from the './_site' directory by default

@@ -21,7 +21,7 @@
 title: Lucas Jansen
 # email: your-email@example.com # Nice try spam bots
 description: >- # this means to ignore newlines until "baseurl:"
-  Hi. My name is Lucas and I am an electronic and software engineer from Cork, Ireland.
+  My name is Lucas Jansen and I'm an embedded software engineer from Cork
 baseurl: "/site-v2" # the subpath of your site, e.g. /blog
 url: "https://lucasjansen.me" # the base hostname & protocol for your site, e.g. http://example.com
 # twitter_username: staticintlucas
@@ -33,6 +33,14 @@ sass:
   sourcemap: development
 # plugins:
 #   - jekyll-feed
+
+# Jekyll SEO Tag
+logo: /assets/icons/favicon.svg
+defaults:
+  - scope:
+      path: ""
+    values:
+      image: /assets/images/homepage.png
 
 # Exclude from processing.
 # The following items will not be processed, by default.

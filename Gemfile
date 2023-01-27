@@ -17,6 +17,7 @@ gem "jekyll", "~> 4.3.1"
 group :jekyll_plugins do
   gem "jekyll-feed", "~> 0.17"
   gem "jekyll-favicon-generator", "~> 0.1"
+  gem "jekyll-seo-tag", "~> 2.8"
   # TODO Use standard Gem when my PR is merged
   gem "jekyll-titles-from-headings", :git => "https://github.com/staticintlucas/jekyll-titles-from-headings.git", :branch => 'collection-type-fix'
   gem "jekyll-inline-svg", :git => "https://github.com/sdumetz/jekyll-inline-svg", :ref => "2ae1465"
