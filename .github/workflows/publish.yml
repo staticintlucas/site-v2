@@ -41,26 +41,24 @@ jobs:
         minify -r . -o .
         minify --type=json site.webmanifest -o .
 
-    - name: Edit homepage for screenshot
+    - name: Start Jekyll server for taking screenshot
       run: |
-        cp _site/index.html _site/screenshot-index.html
-        sed -i -e 's~${{ steps.pages.outputs.base_url }}/~~g' _site/screenshot-index.html
-        sed -i -e 's~${{ steps.pages.outputs.base_path }}/~~g' _site/screenshot-index.html
+        bundle exec jekyll serve --skip-initial-build --no-watch --detach --port=4000
 
     - name: Take screenshot
       id: screenshot
       uses: swinton/screenshot-website@v1.x
       with:
-        source: ./_site/screenshot-index.html
+        source: http://localhost:4000/${{ steps.pages.outputs.base_path }}/
         destination: screenshot.png
         width: 1280
         height: 720
         is-java-script-enabled: false
         scale-factor: 1
 
-    - name: Clean up homepage for screenshot
+    - name: Stop Jekyll server for taking screenshot
       run: |
-        rm _site/screenshot-index.html
+        pkill -f jekyll
 
     - name: Move screenshot to output folder
       run: |
