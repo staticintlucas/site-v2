@@ -7,8 +7,8 @@ main_class: home
 stylesheets: ["main.css", "home.css"]
 ---
 
-<div class="vcenter">
-  <div>
+<div class="columns">
+  <div class="intro">
     <h1>
       Hi, I'm Lucas
     </h1>
@@ -17,5 +17,50 @@ stylesheets: ["main.css", "home.css"]
       I currently work on bare-metal software for system-level validation at Qualcomm.
     </p>
   </div>
-  <img src="assets/icons/favicon.svg" width="400" height="400">
+  <img src="assets/icons/favicon.svg" class="narrow">
+</div>
+
+<h2>Programming Skills</h2>
+
+<div class="columns">
+  <div class="narrow tight">
+    <p>
+      C <small>(application & embedded)</small>
+      <meter max="10" value="9.5">9.5/10</meter>
+    </p>
+    <p>
+      Python
+      <meter max="10" value="9">9/10</meter>
+    </p>
+    <p>
+      Assembly <small>(x86/x86-64, Arm, RISC-V, others)</small>
+      <meter max="10" value="8.5">8.5/10</meter>
+    </p>
+    <p>
+      C++
+      <meter max="10" value="7">7/10</meter>
+    </p>
+    <p>
+      Rust
+      <meter max="10" value="6">6/10</meter>
+    </p>
+  </div>
+  <div>
+    <p>
+      Most of my time programming is spent writing embedded code in C, C++, and Assembly;
+        primarily tests for hardware validation at Qualcomm.
+      I do also have experience writing application code,
+        both as part of my work and for personal projects.
+    </p>
+    <p>
+      For scripting and automation tasks I use Python extensively,
+        especially when the task gets too complicated for a simple shell script.
+      I also learned Rust, mainly out of my own curiosity,
+        although I'm not quite as experienced in that as the others.
+    </p>
+    <p>
+      I have also dabbled in several other languages over the years,
+        including Ruby, Bash, JavaScript, Lua, PHP, and Matlab.
+    </p>
+  </div>
 </div>

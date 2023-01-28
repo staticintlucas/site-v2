@@ -3,16 +3,20 @@
 @import "_sizes";
 
 main.home {
-  width: 100%;
+  max-width: $wide-width;
 
-  >div.vcenter {
-    width: 100%;
-    height: calc(100vh - $nav-height);
-    flex-direction: row;
-    gap: $gap;
+  >div.columns {
+    &:first-child {
+      min-height: 75vh;
+      align-items: center;
+    }
 
-    >div {
+    >* {
       flex-shrink: 0;
+      width: $main-width;
+    }
+
+    >.narrow {
       width: $narrow-width;
     }
   }

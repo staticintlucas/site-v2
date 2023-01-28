@@ -15,14 +15,24 @@ main {
 
 p, form, h1, h2, h3, h4, h5, h6, hgroup, ul, ol, table, blockquote, hr, span, footer {
   margin: $p-margin 0;
+
+  &:first-child {
+    margin-top: 0;
+  }
+
+  .tight & {
+    margin: $tight-margin 0;
+  }
 }
 
-div.vcenter {
+div.columns {
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  flex-direction: row;
+  align-items: flex-start;
   justify-content: center;
+  gap: $column-gap;
 }
+
 
 h1, h2, h3, h4, h5, h6 {
   font-family: $header-font-family;
@@ -79,4 +89,30 @@ footer {
   font-size: $footer-font-size;
   color: $greyed;
   text-align: center;
+}
+
+meter {
+  width: 100%;
+  height: $meter-thickness;
+  background: light(light($background));
+  display: block;
+  margin: $progress-gap 0;
+
+  &::-webkit-meter-inner-element {
+    display: block;
+  }
+
+  &::-webkit-meter-bar {
+    background: light(light($background));
+    border: none;
+    border-radius: 0;
+  }
+
+  &::-webkit-meter-optimum-value, &::-webkit-meter-suboptimum-value, &::-webkit-meter-even-less-good-value {
+    background: $accent;
+  }
+
+  &::-moz-meter-bar {
+    background: $accent;
+  }
 }
