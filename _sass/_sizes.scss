@@ -1,16 +1,20 @@
+@use "sass:math";
+
 $root-font-size: 18pt;
 
-$h1-font-size: 3rem;
-$h2-font-size: 1.5rem;
-$h3-font-size: 1.17rem;
-$h4-font-size: 1rem;
-$h5-font-size: 0.83rem;
-$h6-font-size: 0.67rem;
+@function cbrt($num) { @return math.pow($num, math.div(1, 3)) }
+$h1-font-size: 4rem;
+$h2-font-size: $h1-font-size * cbrt(0.5);
+$h3-font-size: $h2-font-size * cbrt(0.5);
+$h4-font-size: $h3-font-size * cbrt(0.5);
+$h5-font-size: $h4-font-size * cbrt(0.5);
+$h6-font-size: $h5-font-size * cbrt(0.5);
 
-$mono-font-size: 0.8333333rem;
-$footer-font-size: 0.8333333rem;
+$mono-font-size: math.div(5rem, 6);
+$nav-font-size: math.div(4rem, 5);
+$footer-font-size: math.div(5rem, 6);
 
-$a-underline-thickness: 0.075em;
+$a-underline-thickness: 0.08em;
 $a-transition-duration: 0.125s;
 
 $main-width: 35rem;
@@ -18,15 +22,15 @@ $main-width: 35rem;
 $p-margin: 1.5rem;
 $gap: 0.4rem;
 
-$nav-height: 6em;
-$nav-width: 72em;
-$nav-margin: 2.4em;
-$nav-logo-size: 2.4em;
-$nav-link-margin-v: 0.3em;
-$nav-link-margin-h: 1.2em;
+$nav-height: 5rem;
+$nav-width: 60rem;
+$nav-margin: 2rem;
+$nav-logo-size: 2rem;
+$nav-link-margin-v: 0.25rem;
+$nav-link-margin-h: 1rem;
 $nav-link-margin: $nav-link-margin-v $nav-link-margin-h;
-$nav-link-padding-v: 0.3em;
-$nav-link-padding-h: 0.6em;
+$nav-link-padding-v: 0.25rem;
+$nav-link-padding-h: 0.5rem;
 $nav-link-padding: $nav-link-padding-v $nav-link-padding-h;
 
 $wide-width: 45rem;

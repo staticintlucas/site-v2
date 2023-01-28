@@ -14,14 +14,6 @@ main.home {
     >div {
       flex-shrink: 0;
       width: $narrow-width;
-
-      >h1 {
-        margin-bottom: $gap;
-      }
-
-      >p {
-        margin-top: 0;
-      }
     }
   }
 }

@@ -10,7 +10,8 @@ header#main-nav-header {
   box-shadow: 0 0px 1pt black;
 
   font-family: $mono-font-family;
-  font-size: $mono-font-size;
+  font-size: $nav-font-size;
+  text-transform: uppercase;
 
   >nav {
     height: 100%;
