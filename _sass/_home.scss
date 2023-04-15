@@ -6,14 +6,23 @@ main.home {
   max-width: $wide-width;
 
   >div.columns {
-    &:first-child {
+    &.main-card {
       min-height: 75vh;
       align-items: center;
+      padding: 2 * $hr-margin 0; // As if there's a hr above and below
     }
 
     >* {
       flex-shrink: 0;
       width: $main-width;
+
+      >:first-child {
+        margin-top: 0;
+      }
+
+      >:last-child {
+        margin-bottom: 0;
+      }
     }
 
     >.narrow {

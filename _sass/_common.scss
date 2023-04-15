@@ -117,3 +117,12 @@ meter {
     background: $accent;
   }
 }
+
+hr {
+  margin: $hr-margin 25%;
+  border: none;
+
+  &:not(.space) {
+    border-bottom: solid $hr-thickness $greyed;
+  }
+}
