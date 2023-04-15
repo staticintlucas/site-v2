@@ -1,15 +1,6 @@
-body {
-  margin-top: $nav-height;
-}
-
 header#main-nav-header {
-  position: fixed;
   inset: 0;
   height: $nav-height;
-
-  background: $background;
-  box-shadow: 0 0px 1pt black;
-
   font-family: $mono-font-family;
   font-size: $nav-font-size;
   text-transform: uppercase;
