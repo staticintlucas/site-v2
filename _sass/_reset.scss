@@ -25,6 +25,7 @@ hr {
 
 abbr[title] {
   text-decoration: underline dotted; // Add the correct text decoration
+  -webkit-text-decoration: underline dotted; // Add the correct text decoration
 }
 
 b, strong {

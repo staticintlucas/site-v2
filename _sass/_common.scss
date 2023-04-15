@@ -68,6 +68,7 @@ a {
   color: $accent;
   transition: color $a-transition-duration linear;
   text-decoration: solid underline $accent-underline;
+  -webkit-text-decoration: solid underline $accent-underline;
   text-decoration-thickness: $a-underline-thickness;
 
   &:visited {

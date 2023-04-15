@@ -32,6 +32,7 @@ header#main-nav-header {
       margin: $nav-link-margin;
       padding: $nav-link-padding;
       text-decoration: solid underline transparent;
+      -webkit-text-decoration: solid underline transparent;
       // This gets unset when not set in the text-decoration shorthand, but not
       // all browsers support setting it as part of text-decoration either
       text-decoration-thickness: $a-underline-thickness;
