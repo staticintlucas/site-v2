@@ -4,17 +4,14 @@ set -euo pipefail
 
 build_dir="build"
 
-iosevka_ver="v15.6.3"
-inter_ver="v3.19"
-crimson_ver="f21e0a4"
+inter_ver="v4.0"
+jetbrains_ver="v2.304"
 
-iosevka_build_dir="$build_dir/iosevka-$iosevka_ver"
 inter_build_dir="$build_dir/inter-$inter_ver"
-crimson_build_dir="$build_dir/crimson-$crimson_ver"
+jetbrains_build_dir="$build_dir/jetbrains-$jetbrains_ver"
 
-iosevka_install_dir="iosevka-extended"
-inter_install_dir="inter-display"
-crimson_install_dir="crimson-pro"
+inter_install_dir="inter"
+jetbrains_install_dir="jetbrains-mono"
 
 venv_dir="$build_dir/.venv"
 subset_requirements="subset-requirements.txt"
@@ -36,46 +33,35 @@ major_version() {
   echo "$(cut -d. -f1 <<< ${str#v})"
 }
 
-build_iosevka() {
-  local dir="$1"
-  cp "private-build-plans.toml" "$dir/private-build-plans.toml"
-  ( cd $dir && npm install )
-  ( cd $dir && ( npm run build -- webfont::iosevka-extended; echo ) )
-  mkdir -p "$iosevka_install_dir"
-  cp "$dir"/dist/iosevka-extended/woff2/iosevka-extended-*.woff2 "$iosevka_install_dir"
-  cp "$dir/LICENSE.md" "$iosevka_install_dir/LICENSE.md"
-}
-
 build_inter() {
   local dir="$1"
   (
     cd $dir
-    # Update version so build doesn't fail without Python2
-    sed -i 's/skia-pathops==0\.6\.0\.post2/skia-pathops==0.7.*/' requirements.txt
-    sed -i 's/cu2qu==1\.6\.7$/cu2qu==1.6.7.post1/' requirements.txt
-    ./init.sh
-    make all_web_hinted_display -j
+    # Make a hinted web font
+    sed -i '' '/^STATIC_FONTS_WEB/ s$/static/$/static-hinted/$' Makefile
+    make static_web -j
   )
   mkdir -p "$inter_install_dir"
-  cp "$dir"/build/fonts/const-hinted/InterDisplay-Regular.woff2 "$inter_install_dir/inter-display-regular.woff2"
-  cp "$dir"/build/fonts/const-hinted/InterDisplay-Italic.woff2 "$inter_install_dir/inter-display-italic.woff2"
-  cp "$dir"/build/fonts/const-hinted/InterDisplay-Bold.woff2 "$inter_install_dir/inter-display-bold.woff2"
-  cp "$dir"/build/fonts/const-hinted/InterDisplay-BoldItalic.woff2 "$inter_install_dir/inter-display-bolditalic.woff2"
+  cp "$dir"/build/fonts/static-hinted/Inter-Regular.woff2 "$inter_install_dir/inter-regular.woff2"
+  cp "$dir"/build/fonts/static-hinted/Inter-Italic.woff2 "$inter_install_dir/inter-italic.woff2"
+  cp "$dir"/build/fonts/static-hinted/Inter-Bold.woff2 "$inter_install_dir/inter-bold.woff2"
+  cp "$dir"/build/fonts/static-hinted/Inter-BoldItalic.woff2 "$inter_install_dir/inter-bolditalic.woff2"
+  cp "$dir"/build/fonts/static-hinted/InterDisplay-Regular.woff2 "$inter_install_dir/inter-display-regular.woff2"
+  cp "$dir"/build/fonts/static-hinted/InterDisplay-Italic.woff2 "$inter_install_dir/inter-display-italic.woff2"
+  cp "$dir"/build/fonts/static-hinted/InterDisplay-Bold.woff2 "$inter_install_dir/inter-display-bold.woff2"
+  cp "$dir"/build/fonts/static-hinted/InterDisplay-BoldItalic.woff2 "$inter_install_dir/inter-display-bolditalic.woff2"
   cp "$dir/LICENSE.txt" "$inter_install_dir/LICENSE.txt"
 }
 
-build_crimson() {
+build_jetbrains() {
   local dir="$1"
-  (
-    cd $dir
-    make build -j
-  )
-  mkdir -p "$crimson_install_dir"
-  cp "$dir"/fonts/webfonts/CrimsonPro-Light.woff2 "$crimson_install_dir/crimson-pro-regular.woff2"
-  cp "$dir"/fonts/webfonts/CrimsonPro-LightItalic.woff2 "$crimson_install_dir/crimson-pro-italic.woff2"
-  cp "$dir"/fonts/webfonts/CrimsonPro-Medium.woff2 "$crimson_install_dir/crimson-pro-bold.woff2"
-  cp "$dir"/fonts/webfonts/CrimsonPro-MediumItalic.woff2 "$crimson_install_dir/crimson-pro-bolditalic.woff2"
-  cp "$dir/OFL.txt" "$crimson_install_dir/LICENSE.txt"
+  # Jetbrains is already prebuilt in the GitHub repo
+  mkdir -p "$jetbrains_install_dir"
+  cp "$dir"/fonts/webfonts/JetBrainsMono-Regular.woff2 "$jetbrains_install_dir/jetbrains-mono-regular.woff2"
+  cp "$dir"/fonts/webfonts/JetBrainsMono-Italic.woff2 "$jetbrains_install_dir/jetbrains-mono-italic.woff2"
+  cp "$dir"/fonts/webfonts/JetBrainsMono-Bold.woff2 "$jetbrains_install_dir/jetbrains-mono-bold.woff2"
+  cp "$dir"/fonts/webfonts/JetBrainsMono-BoldItalic.woff2 "$jetbrains_install_dir/jetbrains-mono-bolditalic.woff2"
+  cp "$dir/OFL.txt" "$jetbrains_install_dir/LICENSE.txt"
 }
 
 create_subset_venv () {
@@ -101,45 +87,31 @@ echo '*' > "$build_dir/.gitignore"
 
 # Test for dependencies
 
-[ "$(major_version $(node --version))" -gt "14" ] || \
-  { echo "NodeJS 14.0 or later is required for Iosevka"; exit 1; }
-command -v ttfautohint > /dev/null || { echo "ttfautohint is required for Iosevka"; exit 1; }
-command -v python3 > /dev/null || { echo "python3 is required for Crimson Pro and Inter"; exit 1; }
-command -v yq > /dev/null || { echo "yq is required for Crimson Pro"; exit 1; }
+command -v python3 > /dev/null || { echo "python3 is required to build Inter"; exit 1; }
 
 # Download fonts
-
-echo "Downloading Iosevka..."
-download "https://github.com/be5invis/Iosevka/archive/refs/tags/$iosevka_ver.tar.gz" "$iosevka_build_dir"
 
 echo "Downloading Inter..."
 download "https://github.com/rsms/inter/archive/refs/tags/$inter_ver.tar.gz" "$inter_build_dir"
 
-echo "Downloading Crimson Pro..."
-# download "https://github.com/Fonthausen/CrimsonPro/archive/refs/tags/$crimson_ver.tar.gz" "$crimson_build_dir"
-download "https://github.com/Fonthausen/CrimsonPro/tarball/$crimson_ver" "$crimson_build_dir"
+echo "Downloading JetBrains Mono..."
+download "https://github.com/JetBrains/JetBrainsMono/archive/refs/tags/$jetbrains_ver.tar.gz" "$jetbrains_build_dir"
 
 # Build fonts
-
-echo "Building Iosevka..."
-build_iosevka "$iosevka_build_dir"
 
 echo "Building Inter..."
 build_inter "$inter_build_dir"
 
-echo "Building Crimson Pro..."
-build_crimson "$crimson_build_dir"
+echo "Building JetBrains Mono..."
+build_jetbrains "$jetbrains_build_dir"
 
 # Compress fonts
 
 echo "Downloading pyftsubset..."
 create_subset_venv "$venv_dir"
 
-echo "Minimising Iosevka..."
-subset "$iosevka_install_dir"
-
 echo "Minimising Inter..."
 subset "$inter_install_dir"
 
-echo "Minimising Crimson Pro..."
-subset "$crimson_install_dir"
+echo "Minimising JetBrains Mono..."
+subset "$jetbrains_install_dir"
