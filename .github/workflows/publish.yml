@@ -11,12 +11,12 @@ jobs:
 
     steps:
     - name: Checkout repo
-      uses: actions/checkout@v2
+      uses: actions/checkout@v4
 
     - name: Set up Ruby
       uses: ruby/setup-ruby@v1
       with:
-        ruby-version: 3.3
+        ruby-version: 3.3.5 # Automatically reading .ruby-version doesn't seem to work
         bundler-cache: true
 
     - name: Set up minifier
@@ -31,7 +31,7 @@ jobs:
 
     - name: Setup Pages
       id: pages
-      uses: actions/configure-pages@v2
+      uses: actions/configure-pages@v5
 
     - name: Build site
       # Outputs to the './_site' directory by default
@@ -71,7 +71,7 @@ jobs:
 
     - name: Upload artifact
       # Automatically uploads an artifact from the './_site' directory by default
-      uses: actions/upload-pages-artifact@v1
+      uses: actions/upload-pages-artifact@v3
 
   publish:
     runs-on: ubuntu-latest
@@ -88,4 +88,4 @@ jobs:
     steps:
     - name: Publish site
       id: deployment
-      uses: actions/deploy-pages@v1
+      uses: actions/deploy-pages@v4
