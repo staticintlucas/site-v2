@@ -61,7 +61,7 @@ jobs:
         
     - name: Take screenshot
       run: |
-        shot-scraper "http://localhost:4000/${{ steps.pages.outputs.base_path }}/" -o "./_site/assets/images/homepage.png" --width 1280 --height 720
+        shot-scraper "http://localhost:4000/${{ steps.pages.outputs.base_path }}/" -o "./_site/assets/images/homepage.png" --width 1280 --height 720 --wait 1000 --fail
 
     - name: Stop Jekyll server for taking screenshot
       run: |
