@@ -19,6 +19,11 @@ jobs:
         ruby-version: 3.3.5 # Automatically reading .ruby-version doesn't seem to work
         bundler-cache: true
 
+    - name: Set up Python
+      uses: actions.setup-python@v5
+      with:
+        python-version: 3.10
+
     - name: Set up minifier
       run: |
         sudo apt-get update
@@ -28,6 +33,11 @@ jobs:
       run: |
         sudo apt-get update
         sudo apt-get install libvips
+
+    - name: Install shot-scraper
+      run: |
+        pip install shot-scraper
+        shot-scraper install
 
     - name: Setup Pages
       id: pages
@@ -48,26 +58,14 @@ jobs:
     - name: Start Jekyll server for taking screenshot
       run: |
         bundle exec jekyll serve --skip-initial-build --no-watch --detach --port=4000
-
+        
     - name: Take screenshot
-      id: screenshot
-      uses: swinton/screenshot-website@v1.x
-      with:
-        source: http://localhost:4000/${{ steps.pages.outputs.base_path }}/
-        destination: screenshot.png
-        width: 1280
-        height: 720
-        is-java-script-enabled: false
-        scale-factor: 1
+      run: |
+        shot-scraper "http://localhost:4000/${{ steps.pages.outputs.base_path }}/" -o "./_site/assets/images/homepage.png" --width 1280 --height 720
 
     - name: Stop Jekyll server for taking screenshot
       run: |
         pkill -f jekyll
-
-    - name: Move screenshot to output folder
-      run: |
-        mkdir -p ./_site/assets/images/
-        mv ${{ steps.screenshot.outputs.path }} ./_site/assets/images/homepage.png
 
     - name: Upload artifact
       # Automatically uploads an artifact from the './_site' directory by default
