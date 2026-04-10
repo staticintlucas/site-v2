@@ -1,1 +1,1 @@
-fonttools[lxml,woff]==4.44.3 # To minimise download, use same version as Inter
+fonttools[lxml,woff]==4.60.2 # To minimise download, use same version as Inter
